@@ -1,6 +1,6 @@
 // Initialize arrays to store leads
 let myLeads = [];
-const colors = ['#d63dba','red','green','blue','yellow']
+const colors = ['#d63dba','red','green','blue','lightblue','hotpink','black']
 let colorEls = document.getElementsByClassName('color');
 let backcolorEls = document.getElementsByClassName('background');
 let allLinks = document.getElementsByTagName('a');
@@ -16,7 +16,7 @@ const colorBtn = document.getElementById("color-btn")
 // Retrieve leads from local storage
 const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
 
-let colorIndex = 0
+let colorIndex = -1;
 for (let i = 0; i < allLinks.length; i++) {
     allLinks[i].style.color = colors[colorIndex];
 }
@@ -30,9 +30,10 @@ if (leadsFromLocalStorage) {
 // Event listener for the color button
 colorBtn.addEventListener("click", function() {
     // Check if the colorIndex is at the end of the colors array
-    if (colorIndex >= colors.length - 1)
+    colorIndex++; 
+    if (colorIndex >= colors.length )
         colorIndex = 0; // If at the end, reset colorIndex to the beginning
-    colorIndex++; // Increment colorIndex for the next color
+    // Increment colorIndex for the next color
 
     // Update text and border colors for elements with class colorEls
     for (let i = 0; i < colorEls.length; i++) {
@@ -89,7 +90,7 @@ function render(leads) {
 }
 
 // Event listener for double-clicking the delete button
-deleteBtn.addEventListener("dblclick", function() {
+deleteBtn.addEventListener("click", function() {
     // Clear local storage, reset myLeads array, and render the leads
     localStorage.clear();
     myLeads = [];
