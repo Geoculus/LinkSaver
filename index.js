@@ -27,35 +27,42 @@ if (leadsFromLocalStorage) {
     render(myLeads);
 }
 
+// Event listener for the color button
 colorBtn.addEventListener("click", function() {
-    if(colorIndex>=colors.length-1)
-        colorIndex=0
-    colorIndex++
+    // Check if the colorIndex is at the end of the colors array
+    if (colorIndex >= colors.length - 1)
+        colorIndex = 0; // If at the end, reset colorIndex to the beginning
+    colorIndex++; // Increment colorIndex for the next color
+
+    // Update text and border colors for elements with class colorEls
     for (let i = 0; i < colorEls.length; i++) {
         colorEls[i].style.color = colors[colorIndex];
         colorEls[i].style.borderColor = colors[colorIndex];
-        h1El.style.color = colors[colorIndex];
+        h1El.style.color = colors[colorIndex]; // Update color for h1 element
     }
 
+    // Update background and border colors for elements with class backcolorEls
     for (let i = 0; i < backcolorEls.length; i++) {
-        backcolorEls[i].style.background = colors[colorIndex];;
-        backcolorEls[i].style.borderColor = colors[colorIndex];;
+        backcolorEls[i].style.background = colors[colorIndex];
+        backcolorEls[i].style.borderColor = colors[colorIndex];
     }
+
+    // Update color for all links in the document
     for (let i = 0; i < allLinks.length; i++) {
         allLinks[i].style.color = colors[colorIndex];
     }
-
-      
-
-      
-      
 })
 
+// Event listener for the tab button
 tabBtn.addEventListener("click", function(){    
+    // Query the active tab in the current window using Chrome API
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-        myLeads.push(tabs[0].url)
-        localStorage.setItem("myLeads", JSON.stringify(myLeads) )
-        render(myLeads)
+        // Add the URL of the active tab to the myLeads array
+        myLeads.push(tabs[0].url);
+        // Store the updated myLeads array in local storage as a JSON string
+        localStorage.setItem("myLeads", JSON.stringify(myLeads));
+        // Render the updated myLeads array
+        render(myLeads);
     })
 })
 
