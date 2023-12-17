@@ -1,6 +1,6 @@
 // Initialize arrays to store leads
 let myLeads = [];
-const colors = ['#d63dba','red','green','blue','lightblue','hotpink','black']
+const colors = ['#d63dba','red','green','blue','lightblue','lightgreen','black']
 let colorEls = document.getElementsByClassName('color');
 let backcolorEls = document.getElementsByClassName('background');
 let allLinks = document.getElementsByTagName('a');
